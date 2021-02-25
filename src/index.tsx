@@ -1,11 +1,11 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
-import { Clock } from 'Clock';
+import App from 'App';
 
 ReactDOM.render(
   <React.StrictMode>
-    <Clock />
+    <App />
   </React.StrictMode>,
   document.getElementById('root')
 );

@@ -1,21 +1,39 @@
 import { useEffect, useMemo, useState } from "react"
+import { useHistory, useParams } from "react-router-dom"
 import styles from "./styles.module.css"
 
-export const Clock = () => {
-    const initialMinutes = 25
-    const initialMiliseconds = initialMinutes * 60 * 1000;
+interface Props {
+    minutes: string
+}
+
+export default () => {
+    const { replace } = useHistory()
+    const params = useParams<Props>()
+    const initialMinutes = parseInt(params.minutes)
+
+    if (isNaN(initialMinutes) || initialMinutes < 1) {
+        replace("/")
+    }
+    
+    const initialSeconds = initialMinutes * 60
+    const initialMiliseconds = initialSeconds * 1000;
     
     const [selectedTimerIndex, setSelectedTimerIndex] = useState<number>()
     const [milisecondsLeft, setMilisecondsLeft] = useState([initialMiliseconds, initialMiliseconds])
     
     const models = useMemo(() => milisecondsLeft.map((milisecondsLeft, index) => {
         const time = new Date(milisecondsLeft)
-        const minutes = time.getMinutes()
-        const seconds = time.getSeconds()
+        const hours = time.getUTCHours()
+        const minutes = hours * 60 + time.getUTCMinutes()
+        const seconds = time.getUTCSeconds()
+
+        const expired = milisecondsLeft === 0
+
         return ({
             label: `${minutes}:${seconds < 10 ? "0" : ""}${seconds}`,
-            onClick: () => setSelectedTimerIndex((index + 1) % 2),
-            selected: index === selectedTimerIndex
+            onClick: () => !expired && setSelectedTimerIndex((index + 1) % 2),
+            selected: index === selectedTimerIndex,
+            expired
         })   
     })
     , [milisecondsLeft, selectedTimerIndex])
@@ -27,6 +45,10 @@ export const Clock = () => {
 
         const interval = setInterval(() => {
             const remainingMiliseconds = milisecondsLeft[selectedTimerIndex] - 1000
+
+            if (remainingMiliseconds < 0) {
+                return;
+            }
             
             let mutableMiliseconds = milisecondsLeft;
             mutableMiliseconds.splice(selectedTimerIndex, 1, remainingMiliseconds)
@@ -45,9 +67,9 @@ export const Clock = () => {
     )
 }
 
-const Timer = ({ label, selected, onClick }: { label: string, selected?: boolean, onClick: () => void }) => {
+const Timer = ({ label, selected, onClick, expired }: { label: string, selected?: boolean, onClick: () => void, expired: boolean }) => {
     return (
-        <div style={{ display: "flex", justifyContent: "center", alignItems: "center", cursor: "pointer", ...(selected && { backgroundColor: "yellow" }) }} {...{ onClick }}>
+        <div style={{ display: "flex", justifyContent: "center", alignItems: "center", cursor: "pointer", ...(selected && { backgroundColor: "yellow" }), ...(expired && { backgroundColor: "red" }) }} {...{ onClick, disabled: expired }}>
             <p style={{fontSize: 100}}>{label}</p>
         </div>
     )

@@ -11,3 +11,27 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
 }
+
+p {
+  margin-block-start: unset;
+  margin-block-end: unset;
+}
+
+/* button {
+  all: unset;
+  background: none !important;
+  box-shadow: none !important;
+  user-select: none;
+}
+
+button:hover {
+  background: none !important;
+  box-shadow: none !important;
+  user-select: none;
+}
+
+button:focus {
+  background: none !important;
+  box-shadow: none !important;
+  user-select: none;
+} */

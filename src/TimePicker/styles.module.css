@@ -1,0 +1,9 @@
+.component {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+}
+
+.component > div {
+  flex: 1;
+}
