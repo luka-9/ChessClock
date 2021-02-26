@@ -1,4 +1,4 @@
-import { BrowserRouter as Router, Redirect, Route, Switch } from "react-router-dom"
+import { HashRouter as Router, Redirect, Route, Switch } from "react-router-dom"
 import TimePicker from "TimePicker"
 import Clock from "Clock"
 
