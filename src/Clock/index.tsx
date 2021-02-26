@@ -31,9 +31,16 @@ export default () => {
 
         return ({
             label: `${minutes}:${seconds < 10 ? "0" : ""}${seconds}`,
-            onClick: () => !expired && setSelectedTimerIndex((index + 1) % 2),
+            onClick: () => {
+                if (expired) {
+                    return;
+                }
+                setSelectedTimerIndex((index + 1) % 2)
+            },
             selected: index === selectedTimerIndex,
-            expired
+            expired,
+            flipped: index === 0,
+            disabled: selectedTimerIndex !== undefined && selectedTimerIndex !== index || expired
         })   
     })
     , [milisecondsLeft, selectedTimerIndex])
@@ -67,9 +74,25 @@ export default () => {
     )
 }
 
-const Timer = ({ label, selected, onClick, expired }: { label: string, selected?: boolean, onClick: () => void, expired: boolean }) => {
+const Timer = ({ label, selected, onClick, expired, flipped, disabled }: { label: string, selected?: boolean, onClick: () => void, expired: boolean, flipped?: boolean, disabled?: boolean }) => {
+    const slamSound = useMemo(() => {
+        let audio = new Audio("slam.m4a") 
+        audio.preload = "auto"
+        
+        return audio
+    }, [])
+
     return (
-        <div style={{ display: "flex", justifyContent: "center", alignItems: "center", cursor: "pointer", ...(selected && { backgroundColor: "yellow" }), ...(expired && { backgroundColor: "red" }) }} {...{ onClick, disabled: expired }}>
+        <div 
+            style={{ display: "flex", justifyContent: "center", alignItems: "center", cursor: "pointer", ...(selected && { backgroundColor: "yellow" }), ...(expired && { backgroundColor: "red" }), ...(flipped && { transform: "rotate(180deg)" }) }} 
+            onTouchStart={() => {
+                if (disabled) {
+                    return;
+                }
+                slamSound.play()
+                onClick()
+            }}
+        >
             <p style={{fontSize: 100}}>{label}</p>
         </div>
     )
