@@ -1,4 +1,4 @@
-import { useEffect, useMemo, useState } from "react"
+import { useCallback, useEffect, useMemo, useState } from "react"
 import { useHistory, useParams } from "react-router-dom"
 import styles from "./styles.module.css"
 
@@ -82,16 +82,22 @@ const Timer = ({ label, selected, onClick, expired, flipped, disabled }: { label
         return audio
     }, [])
 
+    const onClickHandler = useCallback(
+        () => {
+            if (disabled) {
+                return;
+            }
+            slamSound.play()
+            onClick()
+        },
+        [disabled, slamSound, onClick],
+    )
+
     return (
         <div 
             style={{ display: "flex", justifyContent: "center", alignItems: "center", cursor: "pointer", ...(selected && { backgroundColor: "yellow" }), ...(expired && { backgroundColor: "red" }), ...(flipped && { transform: "rotate(180deg)" }) }} 
-            onTouchStart={() => {
-                if (disabled) {
-                    return;
-                }
-                slamSound.play()
-                onClick()
-            }}
+            onClick={onClickHandler}
+            onTouchStart={onClickHandler}
         >
             <p style={{fontSize: 100}}>{label}</p>
         </div>
