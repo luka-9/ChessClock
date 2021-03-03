@@ -96,8 +96,15 @@ const Timer = ({ label, selected, onClick, expired, flipped, disabled }: { label
     return (
         <div 
             style={{ display: "flex", justifyContent: "center", alignItems: "center", cursor: "pointer", ...(selected && { backgroundColor: "yellow" }), ...(expired && { backgroundColor: "red" }), ...(flipped && { transform: "rotate(180deg)" }) }} 
-            onClick={onClickHandler}
-            onTouchStart={onClickHandler}
+            onTouchStart={event => {
+                const isSwipeBackAction = event.touches[0].pageX < 30
+                
+                if (isSwipeBackAction) {
+                    return;
+                }
+
+                onClickHandler()
+            }}
         >
             <p style={{fontSize: 100}}>{label}</p>
         </div>
