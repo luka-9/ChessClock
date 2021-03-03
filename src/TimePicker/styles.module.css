@@ -1,9 +1,10 @@
 .component {
   display: flex;
   flex-direction: column;
-  justify-content: space-around;
+  justify-content: flex-start;
 }
 
 .component > div {
-  flex: 1;
+  background-color: rgba(255, 255, 255, 0.4);
+  margin: 1px 0px;
 }

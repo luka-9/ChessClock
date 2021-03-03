@@ -21,7 +21,7 @@ export default () => {
 const Option = ({ label, onClick }: { label: string, onClick: () => void }) => {
     return (
         <div style={{ display: "flex", justifyContent: "center", alignItems: "center", cursor: "pointer" }} {...{ onClick }}>
-            <p style={{fontSize: 70}}>{label}</p>
+            <p style={{fontSize: 32, fontWeight: 700, padding: "18px 0px"}}>{label}</p>
         </div>
     )
 }
