@@ -94,7 +94,7 @@ const Timer = ({ label, selected, onClick, expired, flipped, disabled }: { label
     )
     return (
         <div 
-            style={{ display: "flex", justifyContent: "center", alignItems: "center", cursor: "pointer", ...(selected && { backgroundColor: "yellow" }), ...(expired && { backgroundColor: "red" }), ...(flipped && { transform: "rotate(180deg)" }) }} 
+            style={{ display: "flex", justifyContent: "center", alignItems: "center", cursor: "pointer", ...(selected && { backgroundColor: "gold" }), ...(expired && { backgroundColor: "red" }), ...(flipped && { transform: "rotate(180deg)" }) }} 
             onMouseDown={onClickHandler}
             onTouchStart={event => {
                 const statusBarHeight = 8
