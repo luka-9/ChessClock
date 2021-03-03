@@ -92,15 +92,18 @@ const Timer = ({ label, selected, onClick, expired, flipped, disabled }: { label
         },
         [disabled, slamSound, onClick],
     )
-
     return (
         <div 
             style={{ display: "flex", justifyContent: "center", alignItems: "center", cursor: "pointer", ...(selected && { backgroundColor: "yellow" }), ...(expired && { backgroundColor: "red" }), ...(flipped && { transform: "rotate(180deg)" }) }} 
             onMouseDown={onClickHandler}
             onTouchStart={event => {
-                const isSwipeBackAction = event.touches[0].pageX < 30
+                const statusBarHeight = 8
                 
-                if (isSwipeBackAction) {
+                const isSwipeBackAction = event.touches[0].clientX < 30
+                const isBottomSwipeAction = event.touches[0].clientY > window.innerHeight - statusBarHeight - 30
+
+                
+                if (isSwipeBackAction || isBottomSwipeAction) {
                     return;
                 }
 
