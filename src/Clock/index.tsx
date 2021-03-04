@@ -110,7 +110,7 @@ const Timer = ({ label, selected, onClick, expired, flipped, disabled }: { label
                 onClickHandler()
             }}
         >
-            <p style={{fontSize: 120, fontWeight: 500, letterSpacing: -3}}>{label}</p>
+            <p style={{fontSize: 110, fontWeight: 500, letterSpacing: -3}}>{label}</p>
         </div>
     )
 }
