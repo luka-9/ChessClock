@@ -1,7 +1,7 @@
 import styles from "./styles.module.css"
 import { useCallback, useMemo } from "react"
 
-export default ({ label, selected, onClick, expired, flipped, disabled }: { label: string, selected?: boolean, onClick: () => void, expired: boolean, flipped?: boolean, disabled?: boolean }) => {
+export default ({ minutes, seconds, selected, onClick, expired, flipped, disabled }: { minutes: number, seconds: number, selected?: boolean, onClick: () => void, expired: boolean, flipped?: boolean, disabled?: boolean }) => {
     const slamSound = useMemo(() => {
         let audio = new Audio("slam.m4a") 
         audio.preload = "auto"
@@ -19,6 +19,9 @@ export default ({ label, selected, onClick, expired, flipped, disabled }: { labe
         },
         [disabled, slamSound, onClick],
     )
+
+    const label = useMemo(() => `${minutes}:${seconds < 10 ? "0" : ""}${seconds}`, [minutes, seconds])
+    
     return (
         <div 
             className={styles.component}

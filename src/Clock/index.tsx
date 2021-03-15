@@ -1,4 +1,4 @@
-import { useEffect, useMemo, useState } from "react"
+import React, { useEffect, useMemo, useState } from "react"
 import { useHistory, useParams } from "react-router-dom"
 import Timer from "Timer"
 import styles from "./styles.module.css"
@@ -31,7 +31,8 @@ export default () => {
         const expired = milisecondsLeft === 0
 
         return ({
-            label: `${minutes}:${seconds < 10 ? "0" : ""}${seconds}`,
+            minutes,
+            seconds,
             onClick: () => {
                 if (expired) {
                     return;
@@ -70,7 +71,13 @@ export default () => {
 
     return (
         <div className={styles.component} style={{ height: window.innerHeight }}>
-            {models.map(Timer)}
+            {models.map(Timer).reduce((previous, current) => (
+                <React.Fragment>
+                    {previous}
+                    <hr/>
+                    {current}
+                </React.Fragment>
+            ))}
         </div>
     )
 }
