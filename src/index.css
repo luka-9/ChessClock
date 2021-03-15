@@ -75,6 +75,11 @@ button {
   box-shadow: 0 -3px 5px 0 var(--miracle-bay);
   background-color: var(--cheesy-frittata);
   border: none;
+  transition: opacity 100ms linear;
+}
+
+button:active {
+  opacity: 0.7;
 }
 
 #root {
