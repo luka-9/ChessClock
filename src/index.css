@@ -1,4 +1,16 @@
-@import url("https://fonts.googleapis.com/css2?family=Roboto:wght@400;500&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500&display=swap");
+
+:root {
+  --smoke-cloud: #acb9b9;
+  --miracle-bay: #769393;
+  --winter-could-grey: #6e7c7c;
+  --black: #000000;
+  --cheesy-frittata: #ece093;
+  --chai-latte: #f8c9a0;
+  --dr-white: #f9fafa;
+  --panda-black: #3d4848;
+  --roseberry: #f8a6a0;
+}
 
 html,
 body {
@@ -11,12 +23,45 @@ body {
   font-family: "Roboto", sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  background-color: gray;
+  background-color: var(--smoke-cloud);
+  color: var(--black);
 }
 
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
 p {
   margin-block-start: unset;
   margin-block-end: unset;
+}
+
+h1 {
+  font-size: 110px;
+  font-weight: 300;
+  letter-spacing: -5px;
+}
+
+h2 {
+  font-size: 36px;
+  font-weight: 300;
+}
+
+h3 {
+  font-size: 24px;
+  font-weight: 500;
+  color: var(--winter-could-grey);
+}
+
+h4 {
+  font-size: 22px;
+}
+
+h5 {
+  font-size: 20px;
+  font-weight: bold;
 }
 
 #root {
@@ -25,22 +70,3 @@ p {
   overflow-y: scroll;
   --webkit-overflow-scrolling: touch; /* enables “momentum” (smooth) scrolling */
 }
-
-/* button {
-  all: unset;
-  background: none !important;
-  box-shadow: none !important;
-  user-select: none;
-}
-
-button:hover {
-  background: none !important;
-  box-shadow: none !important;
-  user-select: none;
-}
-
-button:focus {
-  background: none !important;
-  box-shadow: none !important;
-  user-select: none;
-} */

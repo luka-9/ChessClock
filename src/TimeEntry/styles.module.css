@@ -1,0 +1,8 @@
+.component {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+  background-color: var(--dr-white);
+  margin: 1px 0px;
+}
