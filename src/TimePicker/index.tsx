@@ -5,7 +5,13 @@ import TimeEntry from "TimeEntry";
 export default () => {
     const history = useHistory()
 
-    const timeEntries = [3, 5, 10, 25, 60]
+    const timeEntries = [
+        3, 
+        5, 
+        10, 
+        25, 
+        60
+    ]
         .map(number => String(number))
         .map(minutes => ({
             label: minutes, 
@@ -14,9 +20,11 @@ export default () => {
 
     return (
         <div className={styles.component} style={{ height: window.innerHeight }}>
-            <h2 className={styles.title}>Pick Your Timer</h2>
-            {timeEntries.map(TimeEntry)}
+            <div style={{ display: "flex", flexDirection: "column", overflowY: "scroll", paddingBottom: 0 }}>
+                <h2 className={styles.title}>Pick Your Timer</h2>
+                {timeEntries.map(TimeEntry)}
+            </div>
+            <button style={{zIndex: 1}}>ADD</button>
         </div>
     )
 }
-    
