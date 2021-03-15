@@ -4,8 +4,12 @@
   align-items: center;
   cursor: pointer;
   background-color: var(--dr-white);
-  margin: 1px 0px;
   transition: opacity 100ms linear;
+  border-top: solid 1px var(--miracle-bay);
+}
+
+.component:last-child {
+  border-bottom: solid 1px var(--miracle-bay);
 }
 
 .component:active {

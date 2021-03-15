@@ -1,5 +1,6 @@
-import { useCallback, useEffect, useMemo, useState } from "react"
+import { useEffect, useMemo, useState } from "react"
 import { useHistory, useParams } from "react-router-dom"
+import Timer from "Timer"
 import styles from "./styles.module.css"
 
 interface Props {
@@ -70,47 +71,6 @@ export default () => {
     return (
         <div className={styles.component} style={{ height: window.innerHeight }}>
             {models.map(Timer)}
-        </div>
-    )
-}
-
-const Timer = ({ label, selected, onClick, expired, flipped, disabled }: { label: string, selected?: boolean, onClick: () => void, expired: boolean, flipped?: boolean, disabled?: boolean }) => {
-    const slamSound = useMemo(() => {
-        let audio = new Audio("slam.m4a") 
-        audio.preload = "auto"
-        
-        return audio
-    }, [])
-
-    const onClickHandler = useCallback(
-        () => {
-            if (disabled) {
-                return;
-            }
-            slamSound.play()
-            onClick()
-        },
-        [disabled, slamSound, onClick],
-    )
-    return (
-        <div 
-            style={{ display: "flex", justifyContent: "center", alignItems: "center", cursor: "pointer", ...(selected && { backgroundColor: "gold" }), ...(expired && { backgroundColor: "red" }), ...(flipped && { transform: "rotate(180deg)" }) }} 
-            onMouseDown={onClickHandler}
-            onTouchStart={event => {
-                const statusBarHeight = 8
-                
-                const isSwipeBackAction = event.touches[0].clientX < 30
-                const isBottomSwipeAction = event.touches[0].clientY > window.innerHeight - statusBarHeight - 30
-
-                
-                if (isSwipeBackAction || isBottomSwipeAction) {
-                    return;
-                }
-
-                onClickHandler()
-            }}
-        >
-            <p style={{fontSize: 110, fontWeight: 500, letterSpacing: -3}}>{label}</p>
         </div>
     )
 }
