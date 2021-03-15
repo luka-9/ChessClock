@@ -15,9 +15,9 @@ export default () => {
                 <h2 className={styles.title}>Pick Your Timer</h2>
                 {
                     timeEntries
-                        .map(({ minutes }) => ({
-                            label: String(minutes), 
-                            onClick: () => push(`/${minutes}`)
+                        .map((timeEntry) => ({
+                            onClick: () => push(`/${timeEntry.minutes}`),
+                            ...timeEntry
                         }))
                         .map(TimeEntry)
                 }
