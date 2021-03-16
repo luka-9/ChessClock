@@ -15,10 +15,19 @@ export default () => {
                 <h2 className={styles.title}>Pick Your Timer</h2>
                 {
                     timeEntries
-                        .map((timeEntry) => ({
-                            onClick: () => push(`/${timeEntry.minutes}`),
-                            ...timeEntry
-                        }))
+                        .map((timeEntry) => {
+                            const { minutes, delaySeconds, incrementSeconds } = timeEntry
+                            
+                            const queryString = new URLSearchParams({ 
+                                ...delaySeconds && { delay: String(delaySeconds) },
+                                ...incrementSeconds && { increment: String(incrementSeconds) },
+                            }).toString()
+
+                            return ({
+                                onClick: () => push(`/${minutes}${queryString ? `?${queryString}` : ''}`),
+                                ...timeEntry
+                            })
+                        })
                         .map(TimeEntry)
                 }
             </div>
