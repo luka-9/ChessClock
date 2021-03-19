@@ -11,7 +11,7 @@ interface Props {
 export default () => {
     const { replace } = useHistory()
     const { search } = useLocation()
-    const { increment, delay } = useMemo(() => {
+    const { increment: incrementSeconds, delay: delaySeconds } = useMemo(() => {
         let result: Record<string, number | undefined> = {}
 
         new URLSearchParams(search).forEach((value, key) => {
@@ -38,14 +38,15 @@ export default () => {
     
     const [selectedTimerIndex, setSelectedTimerIndex] = useState<number>()
     const [milisecondsLeft, setMilisecondsLeft] = useState([initialMiliseconds, initialMiliseconds])
+    const [moveCount, setMoveCount] = useState([0, 0])
     
-    const models = useMemo(() => milisecondsLeft.map((milisecondsLeft, index) => {
-        const time = new Date(milisecondsLeft)
+    const models = useMemo(() => milisecondsLeft.map((_milisecondsLeft, index) => {
+        const time = new Date(_milisecondsLeft)
         const hours = time.getUTCHours()
         const minutes = hours * 60 + time.getUTCMinutes()
         const seconds = time.getUTCSeconds()
 
-        const expired = milisecondsLeft === 0
+        const expired = _milisecondsLeft === 0
 
         return ({
             minutes,
@@ -54,12 +55,30 @@ export default () => {
                 if (expired) {
                     return;
                 }
+                
+                if (selectedTimerIndex !== undefined) {
+                    const deselectedTimerIndex = index
+
+                    let mutableMoveCount = moveCount;
+                    mutableMoveCount.splice(deselectedTimerIndex, 1, (moveCount[deselectedTimerIndex] || 0) + 1)
+                    setMoveCount([...moveCount])
+
+                    if (incrementSeconds) {
+                        const remainingMiliseconds = milisecondsLeft[deselectedTimerIndex] + incrementSeconds * 1000
+
+                        let mutableMiliseconds = milisecondsLeft;
+                        mutableMiliseconds.splice(deselectedTimerIndex, 1, remainingMiliseconds)
+                        setMilisecondsLeft([...mutableMiliseconds])
+                    }
+                }
+
                 setSelectedTimerIndex((index + 1) % 2)
             },
             selected: index === selectedTimerIndex,
             expired,
             flipped: index === 0,
-            disabled: selectedTimerIndex !== undefined && selectedTimerIndex !== index || expired
+            disabled: selectedTimerIndex !== undefined && selectedTimerIndex !== index || expired,
+            moveCount: moveCount[index]
         })   
     })
     , [milisecondsLeft, selectedTimerIndex])
@@ -90,6 +109,7 @@ export default () => {
         () => {
             setMilisecondsLeft([initialMiliseconds, initialMiliseconds])
             setSelectedTimerIndex(undefined)
+            setMoveCount([0, 0])
         },
         [],
     )

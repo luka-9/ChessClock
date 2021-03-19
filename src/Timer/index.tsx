@@ -1,7 +1,7 @@
 import styles from "./styles.module.css"
 import { useCallback, useMemo } from "react"
 
-export default ({ minutes, seconds, selected, onClick, expired, flipped, disabled }: { minutes: number, seconds: number, selected?: boolean, onClick: () => void, expired: boolean, flipped?: boolean, disabled?: boolean }) => {
+export default ({ minutes, seconds, selected, onClick, expired, flipped, disabled, moveCount }: { minutes: number, seconds: number, selected?: boolean, onClick: () => void, expired: boolean, flipped?: boolean, disabled?: boolean, moveCount: number }) => {
     const slamSound = useMemo(() => {
         let audio = new Audio("slam.m4a") 
         audio.preload = "auto"
@@ -42,6 +42,7 @@ export default ({ minutes, seconds, selected, onClick, expired, flipped, disable
             }}
         >
             <h1>{label}</h1>
+            {Boolean(moveCount) && <h6 style={{position: "absolute", bottom: 20, right: 20}}>{moveCount}</h6>}
         </div>
     )
 }
