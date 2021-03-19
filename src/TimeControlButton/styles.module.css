@@ -1,0 +1,10 @@
+.component {
+  width: 90px;
+  height: 90px;
+  box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.7);
+  background-color: #ffffff;
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}

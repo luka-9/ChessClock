@@ -4,14 +4,9 @@
   align-items: center;
   cursor: pointer;
   background-color: var(--dr-white);
-  transition: opacity 100ms linear;
   border-top: solid 1px var(--miracle-bay);
 }
 
 .component:last-child {
   border-bottom: solid 1px var(--miracle-bay);
-}
-
-.component:active {
-  opacity: 0.7;
 }

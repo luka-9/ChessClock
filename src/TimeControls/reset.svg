@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="28px" height="28px" viewBox="0 0 28 28" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <title>refresh</title>
+    <g id="refresh" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <path d="M14,0 C6.3,0 0,6.3 0,14 C0,21.7 6.3,28 14,28 C20.475,28 25.9,23.45 28,17.5 L24.5,17.5 C22.4,21.525 18.55,24.5 14,24.5 C8.225,24.5 3.5,19.775 3.5,14 C3.5,8.225 8.225,3.5 14,3.5 C16.975,3.5 19.425,4.725 21,7 L15.75,12.25 L28,12.25 L28,0 L24.5,3.5 C21.35,1.75 17.85,0 14,0 Z" id="Shape" fill="#769393"></path>
+    </g>
+</svg>

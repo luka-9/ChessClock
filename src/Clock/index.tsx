@@ -1,4 +1,5 @@
-import React, { useEffect, useMemo, useState } from "react"
+import TimeControls from "TimeControls"
+import React, { useCallback, useEffect, useMemo, useState } from "react"
 import { useHistory, useParams } from "react-router-dom"
 import Timer from "Timer"
 import styles from "./styles.module.css"
@@ -69,6 +70,21 @@ export default () => {
         }
     }, [selectedTimerIndex])
 
+    const resetTimer = useCallback(
+        () => {
+            setMilisecondsLeft([initialMiliseconds, initialMiliseconds])
+            setSelectedTimerIndex(undefined)
+        },
+        [],
+    )
+
+    const pauseTimer = useCallback(
+        () => {
+            setSelectedTimerIndex(undefined)
+        },
+        [],
+    )
+
     return (
         <div className={styles.component} style={{ height: window.innerHeight }}>
             {models.map(Timer).reduce((previous, current) => (
@@ -78,6 +94,7 @@ export default () => {
                     {current}
                 </React.Fragment>
             ))}
+            {selectedTimerIndex !== undefined && <TimeControls onResetClick={resetTimer} onPauseClick={pauseTimer} />}
         </div>
     )
 }

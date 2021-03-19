@@ -7,7 +7,7 @@ interface Props extends TimeEntry {
 
 export default ({ minutes, delaySeconds, incrementSeconds, onClick }: Props) => {
     return (
-        <div className={styles.component} {...{ onClick }}>
+        <div className={`${styles.component} reduceOpacityOnHover`} {...{ onClick }}>
             <h3 style={{ padding: "26px 0px" }}>{`
                 ${minutes}
                 ${incrementSeconds ? ` | ${incrementSeconds}` : ""}
