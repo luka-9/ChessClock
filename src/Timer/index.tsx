@@ -42,7 +42,7 @@ export default ({ minutes, seconds, selected, onClick, expired, flipped, disable
             }}
         >
             <h1>{label}</h1>
-            {Boolean(moveCount) && <h6 style={{position: "absolute", bottom: 20, right: 20}}>{moveCount}</h6>}
+            {Boolean(moveCount) && <h6 className={styles.moveCount}>{moveCount}</h6>}
         </div>
     )
 }
