@@ -1,6 +1,6 @@
 import TimeControls from "TimeControls"
 import React, { useCallback, useEffect, useMemo, useState } from "react"
-import { useHistory, useParams } from "react-router-dom"
+import { useHistory, useLocation, useParams } from "react-router-dom"
 import Timer from "Timer"
 import styles from "./styles.module.css"
 
@@ -10,6 +10,22 @@ interface Props {
 
 export default () => {
     const { replace } = useHistory()
+    const { search } = useLocation()
+    const { increment, delay } = useMemo(() => {
+        let result: Record<string, number | undefined> = {}
+
+        new URLSearchParams(search).forEach((value, key) => {
+            const intValue = parseInt(value)
+            
+            if (!isNaN(intValue)) {
+                result[key] = intValue
+            }
+
+        })
+        return result
+
+    }, [search])
+
     const params = useParams<Props>()
     const initialMinutes = parseInt(params.minutes)
 
