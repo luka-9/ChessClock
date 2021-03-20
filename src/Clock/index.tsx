@@ -88,19 +88,25 @@ export default () => {
             return;
         }
 
-        const interval = setInterval(() => {
-            const remainingMiliseconds = milisecondsLeft[selectedTimerIndex] - 1000
+        let interval: NodeJS.Timeout;
 
-            if (remainingMiliseconds < 0) {
-                return;
-            }
-            
-            let mutableMiliseconds = milisecondsLeft;
-            mutableMiliseconds.splice(selectedTimerIndex, 1, remainingMiliseconds)
-            setMilisecondsLeft([...mutableMiliseconds])
-        }, 1000);
+        const timeout = setTimeout(() => {
+            interval = setInterval(() => {
+                const remainingMiliseconds = milisecondsLeft[selectedTimerIndex] - 1000
+    
+                if (remainingMiliseconds < 0) {
+                    return;
+                }
+                
+                let mutableMiliseconds = milisecondsLeft;
+                mutableMiliseconds.splice(selectedTimerIndex, 1, remainingMiliseconds)
+                setMilisecondsLeft([...mutableMiliseconds])
+            }, 1000);
+        
+        }, (delaySeconds || 0) * 1000)
         
         return () => {
+            clearTimeout(timeout)
             clearInterval(interval)
         }
     }, [selectedTimerIndex])

@@ -11,7 +11,7 @@ export default ({ minutes, delaySeconds, incrementSeconds, onClick }: Props) => 
             <h3 style={{ padding: "26px 0px" }}>{`
                 ${minutes}
                 ${incrementSeconds ? ` | ${incrementSeconds}` : ""}
-                ${delaySeconds ? ` (delay: ${delaySeconds})` : ""}
+                ${delaySeconds ? ` (${delaySeconds})` : ""}
             `}</h3>
         </div>
     )

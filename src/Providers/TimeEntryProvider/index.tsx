@@ -2,11 +2,20 @@ import React, { useCallback, useEffect, useState } from "react";
 
 export interface TimeEntry {
     minutes: number,
-    delaySeconds?: number,
     incrementSeconds?: number,
+    delaySeconds?: number,
 }
 
 const initialTimeEntries: TimeEntry[] = [
+    {
+        minutes: 1,
+        incrementSeconds: 1,
+
+    },
+    {
+        minutes: 2,
+        incrementSeconds: 1,
+    },
     {
         minutes: 3,
         incrementSeconds: 2,
@@ -23,9 +32,6 @@ const initialTimeEntries: TimeEntry[] = [
     },
     {
         minutes: 25
-    },
-    {
-        minutes: 60
     },
 ]
 
