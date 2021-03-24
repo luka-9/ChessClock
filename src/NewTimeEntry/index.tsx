@@ -19,17 +19,21 @@ export default () => {
             name: "Time (min)",
             value: minutes,
             onChange: setMinutes,
+            minValue: 1,
+            maxValue: 999,
             autoFocus: true
         },
         {
             name: "Increment (sec)",
             value: incrementSeconds,
-            onChange: setIncrementSeconds
+            onChange: setIncrementSeconds,
+            maxValue: 10
         },
         {
             name: "Delay (sec)",
             value: delaySeconds,
-            onChange: setDelaySeconds
+            onChange: setDelaySeconds,
+            maxValue: 10
         },
     ]
 
@@ -46,14 +50,17 @@ export default () => {
     )
 
     return (
-        <div className={styles.component} style={{ height: window.innerHeight }}>
+        <form className={styles.component} style={{ height: window.innerHeight }} onSubmit={evt => {
+            evt.preventDefault()
+            onSave()
+        }}>
             <div style={{ display: "flex", flexDirection: "column", overflowY: "scroll", paddingTop: 50 }}>
                 {
                     timeEntryInputs.map(TimeEntryInput).map(withIndexKey)
                 }
             </div>
-            <button style={{zIndex: 1}} onClick={onSave}>SAVE</button>
-        </div>
+            <button style={{zIndex: 1}}>SAVE</button>
+        </form>
     )
 }
 

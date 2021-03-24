@@ -26,7 +26,7 @@ body {
   color: var(--black);
 }
 
-body * {
+body *:not(input) {
   user-select: none;
 }
 
@@ -87,6 +87,8 @@ button {
   background-color: var(--cheesy-frittata);
   border: none;
   transition: opacity 100ms linear;
+  cursor: pointer;
+  color: var(--black);
 }
 
 input {
