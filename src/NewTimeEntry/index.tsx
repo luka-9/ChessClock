@@ -3,6 +3,7 @@ import { useHistory } from "react-router-dom";
 import { useCallback, useContext, useState } from "react";
 import { TimeEntryContext } from "Providers/TimeEntryProvider";
 import TimeEntryInput, { TimeEntryInputProps } from "TimeEntryInput";
+import { withIndexKey } from "helpers";
 
 export default () => {
     const { goBack } = useHistory()
@@ -48,7 +49,7 @@ export default () => {
         <div className={styles.component} style={{ height: window.innerHeight }}>
             <div style={{ display: "flex", flexDirection: "column", overflowY: "scroll", paddingTop: 50 }}>
                 {
-                    timeEntryInputs.map(TimeEntryInput)
+                    timeEntryInputs.map(TimeEntryInput).map(withIndexKey)
                 }
             </div>
             <button style={{zIndex: 1}} onClick={onSave}>SAVE</button>

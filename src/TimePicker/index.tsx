@@ -3,6 +3,7 @@ import { useHistory } from "react-router-dom";
 import TimeEntry from "TimeEntry";
 import { useContext } from "react";
 import { TimeEntryContext } from "Providers/TimeEntryProvider";
+import { withIndexKey } from "helpers";
 
 export default () => {
     const { push } = useHistory()
@@ -29,9 +30,11 @@ export default () => {
                             })
                         })
                         .map(TimeEntry)
+                        .map(withIndexKey)
                 }
             </div>
             <button style={{zIndex: 1}} onClick={() => push("/new")}>ADD</button>
         </div>
     )
 }
+
