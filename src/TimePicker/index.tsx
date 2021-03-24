@@ -31,7 +31,7 @@ export default () => {
                         .map(TimeEntry)
                 }
             </div>
-            <button style={{zIndex: 1}}>ADD</button>
+            <button style={{zIndex: 1}} onClick={() => push("/new")}>ADD</button>
         </div>
     )
 }

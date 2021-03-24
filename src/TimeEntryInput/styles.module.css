@@ -1,0 +1,21 @@
+.component {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 50px;
+}
+
+.component > h4 {
+  position: relative;
+  left: 20px;
+  margin-bottom: 10px;
+}
+
+.component > input {
+  border: solid 1px var(--miracle-bay);
+  background-color: var(--dr-white);
+
+  font-size: 22px;
+  font-weight: 500;
+  color: var(--panda-black);
+  padding: 21px 0px 21px 30px;
+}

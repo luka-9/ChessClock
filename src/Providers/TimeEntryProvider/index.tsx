@@ -8,15 +8,6 @@ export interface TimeEntry {
 
 const initialTimeEntries: TimeEntry[] = [
     {
-        minutes: 1,
-        incrementSeconds: 1,
-
-    },
-    {
-        minutes: 2,
-        incrementSeconds: 1,
-    },
-    {
         minutes: 3,
         incrementSeconds: 2,
     },

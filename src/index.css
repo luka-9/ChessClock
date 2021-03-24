@@ -5,7 +5,7 @@
   --miracle-bay: #769393;
   --winter-could-grey: #6e7c7c;
   --black: #000000;
-  --cheesy-frittata: #F8ECA0;
+  --cheesy-frittata: #f8eca0;
   --chai-latte: #f8c9a0;
   --dr-white: #f9fafa;
   --panda-black: #3d4848;
@@ -61,8 +61,16 @@ h3 {
   color: var(--winter-could-grey);
 }
 
-h4, button {
+h4,
+button {
   font-size: 20px;
+}
+
+h4 {
+  font-weight: normal;
+}
+
+button {
   font-weight: bold;
 }
 
@@ -73,7 +81,7 @@ hr {
 }
 
 button {
-  margin: 0px;
+  margin: unset;
   padding: 33px;
   box-shadow: 0 0px 8px 0 var(--miracle-bay);
   background-color: var(--cheesy-frittata);
@@ -81,10 +89,14 @@ button {
   transition: opacity 100ms linear;
 }
 
+input {
+  margin: unset;
+  border-radius: unset;
+}
+
 button:active {
   opacity: 0.7;
 }
-
 
 #root {
   width: 100vw;
@@ -96,7 +108,6 @@ button:active {
 .reduceOpacityOnHover {
   transition: opacity 100ms linear;
 }
-
 
 .reduceOpacityOnHover:active {
   opacity: 0.8;
