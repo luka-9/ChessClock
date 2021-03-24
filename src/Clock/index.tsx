@@ -77,11 +77,11 @@ export default () => {
             selected: index === selectedTimerIndex,
             expired,
             flipped: index === 0,
-            disabled: selectedTimerIndex !== undefined && selectedTimerIndex !== index || expired,
+            disabled: ((selectedTimerIndex !== undefined) && (selectedTimerIndex !== index)) || expired,
             moveCount: moveCount[index]
         })   
     })
-    , [milisecondsLeft, selectedTimerIndex])
+    , [milisecondsLeft, selectedTimerIndex, incrementSeconds, moveCount])
 
     useEffect(() => {
         if (!selectedTimerIndex && selectedTimerIndex !== 0) {
@@ -109,7 +109,7 @@ export default () => {
             clearTimeout(timeout)
             clearInterval(interval)
         }
-    }, [selectedTimerIndex])
+    }, [selectedTimerIndex, delaySeconds, milisecondsLeft])
 
     const resetTimer = useCallback(
         () => {
@@ -117,7 +117,7 @@ export default () => {
             setSelectedTimerIndex(undefined)
             setMoveCount([0, 0])
         },
-        [],
+        [initialMiliseconds],
     )
 
     const pauseTimer = useCallback(
