@@ -10,7 +10,7 @@ export interface TimeEntryInputProps {
 }
 
 export default ({ name, value, minValue, maxValue, onChange, autoFocus }: TimeEntryInputProps) => (
-    <div className={styles.component}>
+    <label className={styles.component}>
         <h4>{name}</h4>
         <input 
             type="number"
@@ -27,5 +27,5 @@ export default ({ name, value, minValue, maxValue, onChange, autoFocus }: TimeEn
             value={String(value)}   
             {...{ autoFocus }}
         />
-    </div>
+    </label>
 )
