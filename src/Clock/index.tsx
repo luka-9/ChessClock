@@ -84,6 +84,22 @@ export default () => {
     , [milisecondsLeft, selectedTimerIndex, incrementSeconds, moveCount])
 
     useEffect(() => {
+        let wakeLock: any;
+        
+        if ('wakeLock' in navigator) {
+            // Screen Wake Lock API supported
+            (navigator as any).wakeLock.request().then((wakeLockObject: any) => {
+                wakeLock = wakeLockObject
+            });
+        }
+        return () => {
+            if (wakeLock) {
+                wakeLock.release()
+            }
+        }
+    }, [])
+
+    useEffect(() => {
         if (!selectedTimerIndex && selectedTimerIndex !== 0) {
             return;
         }
